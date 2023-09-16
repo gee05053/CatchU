@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout } from "antd";
+import RecommandCompany from "./RecommandCompany";
 
 const Content: React.FC = () => {
 	const { Content } = Layout;
@@ -12,7 +13,7 @@ const Content: React.FC = () => {
 				paddingBottom: "144px",
 			}}
 		>
-			<div>test</div>
+			<RecommandCompany />
 		</Content>
 	);
 };
