@@ -15,35 +15,52 @@ const Header: React.FC = () => {
 				borderBottomWidth: 1,
 				borderBottomStyle: "solid",
 				borderBottomColor: "#ebebeb",
-				paddingInline: "10%",
+				paddingInline: "12%",
 			}}
 		>
 			<Row
-				style={{
-					alignItems: "center",
-				}}
+				justify="space-between"
+				align="middle"
 			>
-				<Col span={4}>
+				<Col>
 					<b style={{ fontSize: "22px" }}>CatchU</b>
 				</Col>
 				<Col
-					span={3}
-					style={{ fontSize: "18px" }}
+					span={8}
+					style={{
+						display: "flex",
+						justifyContent: "space-between",
+						fontSize: "18px",
+						textAlign: "center",
+					}}
 				>
-					채용
-				</Col>
-				<Col span={3}>커리어</Col>
-				<Col
-					span={11}
-					style={{ fontSize: "18px" }}
-				>
-					이력서
+					<Col
+						span={8}
+						style={{ fontSize: "18px" }}
+					>
+						채용
+					</Col>
+					<Col
+						span={8}
+						style={{ fontSize: "18px" }}
+					>
+						이력서
+					</Col>
+					<Col
+						span={8}
+						style={{ fontSize: "18px" }}
+					>
+						커리어
+					</Col>
 				</Col>
 				<Col>
-					<Space size="large">
-						<BellOutlined style={{ fontSize: "20px" }} />
-						<BulbOutlined style={{ fontSize: "20px" }} />
-						<UserOutlined style={{ fontSize: "20px" }} />
+					<Space
+						size="large"
+						style={{ fontSize: "20px" }}
+					>
+						<BellOutlined />
+						<BulbOutlined />
+						<UserOutlined />
 					</Space>
 				</Col>
 			</Row>
