@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+app.use(bodyParser.json());
 
 const { Client } = require("pg");
-const Query = require("pg").Query;
 
 var client = new Client({
 	user: "test",
@@ -20,23 +25,23 @@ client.connect((err) => {
 	}
 });
 
-const query = {
-	text: "SELECT * FROM users",
-};
-
-client
-	.query(query)
-	.then((res) => {
-		console.log(res);
-		client.end();
-	})
-	.catch((e) => console.error(e.stack));
-
 app.get("/", (req, res) => {
-	res.json({
+	res.send({
 		success: true,
 		test: "test this code",
 	});
+});
+
+app.post("/text", (req, res) => {
+	const text1 = req.body.intext;
+	console.log(text1);
+	app.get("/text", (req, res) => {
+		res.send(text1);
+	});
+});
+
+app.use("/username", (req, res) => {
+	res.json({ username: "kim" });
 });
 
 app.listen(5000, () => {
