@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import HomePage from "./Pages/HomePage";
+import RecruitPage from "./Pages/RecruitPage";
+import CareerPage from "./Pages/CareerPage";
+import ResumePage from "./Pages/ResumePage";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: React.FC = () => {
+	const [isMenuOpen, setMenuOpen] = useState(false);
+
+	return (
+		<>
+			<Header
+				isMenuOpen={isMenuOpen}
+				setMenuOpen={setMenuOpen}
+			/>
+			<Routes>
+				<Route>
+					<Route
+						index
+						element={<HomePage isMenuOpen={isMenuOpen} />}
+					/>
+					<Route
+						path="/recruit"
+						element={<RecruitPage />}
+					/>
+					<Route
+						path="/career"
+						element={<CareerPage />}
+					/>
+					<Route
+						path="/resume"
+						element={<ResumePage />}
+					/>
+				</Route>
+			</Routes>
+		</>
+	);
+};
 
 export default App;

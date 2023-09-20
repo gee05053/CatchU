@@ -1,11 +1,19 @@
 import React from "react";
 import { Layout, Menu, MenuProps } from "antd";
+import { Link } from "react-router-dom";
 
 const Sider: React.FC = () => {
 	const items: MenuProps["items"] = [
 		{
 			key: "0",
-			label: "채용",
+			label: (
+				<Link
+					to="/recruit"
+					style={{ color: "#1f1f1f" }}
+				>
+					채용
+				</Link>
+			),
 			style: {
 				textAlign: "center",
 				fontSize: "20px",
@@ -13,7 +21,14 @@ const Sider: React.FC = () => {
 		},
 		{
 			key: "1",
-			label: "이력서",
+			label: (
+				<Link
+					to="/resume"
+					style={{ color: "#1f1f1f" }}
+				>
+					이력서
+				</Link>
+			),
 			style: {
 				textAlign: "center",
 				fontSize: "20px",
@@ -21,7 +36,14 @@ const Sider: React.FC = () => {
 		},
 		{
 			key: "2",
-			label: "커리어",
+			label: (
+				<Link
+					to="/Career"
+					style={{ color: "#1f1f1f" }}
+				>
+					커리어
+				</Link>
+			),
 			style: {
 				textAlign: "center",
 				fontSize: "20px",

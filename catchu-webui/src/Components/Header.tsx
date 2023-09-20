@@ -7,6 +7,7 @@ import {
 	UserOutlined,
 	MenuOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 type props = {
 	isMenuOpen: boolean;
@@ -38,7 +39,12 @@ const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
 				align="middle"
 			>
 				<Col>
-					<b style={{ fontSize: "22px" }}>CatchU</b>
+					<Link
+						to="/"
+						style={{ color: "#1f1f1f" }}
+					>
+						<b style={{ fontSize: "22px" }}>CatchU</b>
+					</Link>
 				</Col>
 				{isFullScreen ? (
 					<>
@@ -55,19 +61,34 @@ const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
 								span={8}
 								style={{ fontSize: "18px" }}
 							>
-								채용
+								<Link
+									to="/recruit"
+									style={{ color: "#1f1f1f" }}
+								>
+									채용
+								</Link>
 							</Col>
 							<Col
 								span={8}
 								style={{ fontSize: "18px" }}
 							>
-								이력서
+								<Link
+									to="/resume"
+									style={{ color: "#1f1f1f" }}
+								>
+									이력서
+								</Link>
 							</Col>
 							<Col
 								span={8}
 								style={{ fontSize: "18px" }}
 							>
-								커리어
+								<Link
+									to="/Career"
+									style={{ color: "#1f1f1f" }}
+								>
+									커리어
+								</Link>
 							</Col>
 						</Col>
 						<Col>
