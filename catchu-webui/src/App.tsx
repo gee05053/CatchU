@@ -4,6 +4,7 @@ import HomePage from "./Pages/HomePage";
 import RecruitPage from "./Pages/RecruitPage";
 import CareerPage from "./Pages/CareerPage";
 import ResumePage from "./Pages/ResumePage";
+import LoginPage from "./Pages/LoginPage";
 import { Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -32,6 +33,10 @@ const App: React.FC = () => {
 					<Route
 						path="/resume"
 						element={<ResumePage />}
+					/>
+					<Route
+						path="/login"
+						element={<LoginPage />}
 					/>
 				</Route>
 			</Routes>
