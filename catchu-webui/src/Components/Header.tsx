@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Layout, Row, Col, Space, Button } from "antd";
 import {
@@ -7,13 +7,12 @@ import {
 	MenuOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { LoginContext, MenuContext } from "../App";
 
-type props = {
-	isMenuOpen: boolean;
-	setMenuOpen(isOpen: boolean): void;
-};
-const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
+const Header: React.FC = () => {
 	const { Header } = Layout;
+	const { setMenuOpen, isMenuOpen } = useContext(MenuContext);
+	const { isLogin } = useContext(LoginContext);
 
 	const isFullScreen: boolean = useMediaQuery({
 		query: "(min-width: 990px)",
@@ -90,7 +89,7 @@ const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
 								</Link>
 							</Col>
 						</Col>
-						{false ? (
+						{isLogin ? (
 							<Col>
 								<Space
 									size="large"
@@ -108,7 +107,7 @@ const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
 							</Col>
 						)}
 					</>
-				) : false ? (
+				) : isLogin ? (
 					<Col>
 						<Space
 							size="large"

@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Layout } from "antd";
 import Sider from "../Components/Sider";
 import Content from "../Components/Content";
+import { MenuContext } from "../App";
 
-type props = {
-	isMenuOpen: boolean;
-};
-const HomePage: React.FC<props> = ({ isMenuOpen }) => {
+const HomePage: React.FC = () => {
 	const isSmallScreen: boolean = useMediaQuery({
 		query: "(max-width: 990px)",
 	});
+	const { isMenuOpen } = useContext(MenuContext);
 
 	return (
 		<Layout style={{ backgroundColor: "#ffffff" }}>
