@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Layout, Row, Col, Space } from "antd";
+import { Layout, Row, Col, Space, Button } from "antd";
 import {
 	BellOutlined,
-	BulbOutlined,
 	UserOutlined,
 	MenuOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { LoginContext, MenuContext } from "../App";
 
-type props = {
-	isMenuOpen: boolean;
-	setMenuOpen(isOpen: boolean): void;
-};
-const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
+const Header: React.FC = () => {
 	const { Header } = Layout;
+	const { setMenuOpen, isMenuOpen } = useContext(MenuContext);
+	const { isLogin } = useContext(LoginContext);
 
 	const isFullScreen: boolean = useMediaQuery({
 		query: "(min-width: 990px)",
@@ -91,30 +89,40 @@ const Header: React.FC<props> = ({ isMenuOpen, setMenuOpen }) => {
 								</Link>
 							</Col>
 						</Col>
-						<Col>
-							<Space
-								size="large"
-								style={{ fontSize: "20px" }}
-							>
-								<BellOutlined />
-								<BulbOutlined />
-								<UserOutlined />
-							</Space>
-						</Col>
+						{isLogin ? (
+							<Col>
+								<Space
+									size="large"
+									style={{ fontSize: "20px" }}
+								>
+									<BellOutlined />
+									<UserOutlined />
+								</Space>
+							</Col>
+						) : (
+							<Col>
+								<Link to="/login">
+									<Button>로그인</Button>
+								</Link>
+							</Col>
+						)}
 					</>
+				) : isLogin ? (
+					<Col>
+						<Space
+							size="large"
+							style={{ fontSize: "20px" }}
+						>
+							<BellOutlined />
+							<MenuOutlined onClick={onClickMenu} />
+						</Space>
+					</Col>
 				) : (
-					<>
-						<Col>
-							<Space
-								size="large"
-								style={{ fontSize: "20px" }}
-							>
-								<BellOutlined />
-								<BulbOutlined />
-								<MenuOutlined onClick={onClickMenu} />
-							</Space>
-						</Col>
-					</>
+					<Col>
+						<Link to="/login">
+							<Button>로그인</Button>
+						</Link>
+					</Col>
 				)}
 			</Row>
 		</Header>
