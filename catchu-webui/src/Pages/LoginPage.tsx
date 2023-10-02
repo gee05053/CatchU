@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
 				password: value.password,
 			};
 			const result = await axios.post("/user/login", body);
-			if (result.data.length === 0) {
+			if (result.data.user.length === 0) {
 				messageApi.open({
 					type: "error",
 					content: "아이디와 비밀번호를 확인해주세요",
