@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Layout } from "antd";
 import Sider from "../Components/Sider";
-import Content from "../Components/Content";
+import RecommandCompany from "../Components/RecommandCompany";
 import { MenuContext } from "../App";
 
 const HomePage: React.FC = () => {
@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
 	return (
 		<Layout style={{ backgroundColor: "#ffffff" }}>
 			<Layout style={{ backgroundColor: "#ffffff" }}>
-				{isSmallScreen && isMenuOpen ? <Sider /> : <Content />}
+				{isSmallScreen && isMenuOpen ? <Sider /> : <RecommandCompany />}
 			</Layout>
 		</Layout>
 	);

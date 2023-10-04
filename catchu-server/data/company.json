@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"company_name": "test company1",
+		"description": "company1",
+		"keywords": ["웹개발", "react", "프론트"],
+		"rating": 3,
+		"upload_date": "2023-1-2",
+		"end_date": "2023-5-3",
+		"image": "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+	},
+	{
+		"id": 2,
+		"company_name": "test company2",
+		"description": "company2",
+		"keywords": ["생산"],
+		"rating": 1,
+		"upload_date": "2023-1-5",
+		"end_date": "2023-4-3",
+		"image": "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+	},
+	{
+		"id": 3,
+		"company_name": "test company3",
+		"description": "company3",
+		"keywords": [],
+		"rating": 5,
+		"upload_date": "2023-2-10",
+		"end_date": "2023-2-20",
+		"image": "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+	},
+	{
+		"id": 4,
+		"company_name": "test company4",
+		"description": "company4",
+		"keywords": [],
+		"rating": 2,
+		"upload_date": "2023-5-2",
+		"end_date": "2023-6-30",
+		"image": "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+	}
+]
