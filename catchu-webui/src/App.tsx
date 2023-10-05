@@ -5,6 +5,7 @@ import RecruitPage from "./Pages/RecruitPage";
 import CareerPage from "./Pages/CareerPage";
 import ResumePage from "./Pages/ResumePage";
 import LoginPage from "./Pages/LoginPage";
+import CompanyDetail from "./Pages/CompanyDetailPage";
 import { Route, Routes } from "react-router-dom";
 
 export const LoginContext = createContext({
@@ -33,28 +34,30 @@ const App: React.FC = () => {
 			<MenuContext.Provider value={MenuValue}>
 				<Header />
 				<Routes>
-					<Route>
-						<Route
-							index
-							element={<HomePage />}
-						/>
-						<Route
-							path="/recruit"
-							element={<RecruitPage />}
-						/>
-						<Route
-							path="/career"
-							element={<CareerPage />}
-						/>
-						<Route
-							path="/resume"
-							element={<ResumePage />}
-						/>
-						<Route
-							path="/login"
-							element={<LoginPage />}
-						/>
-					</Route>
+					<Route
+						index
+						element={<HomePage />}
+					/>
+					<Route
+						path="/recruit"
+						element={<RecruitPage />}
+					/>
+					<Route
+						path="/career"
+						element={<CareerPage />}
+					/>
+					<Route
+						path="/resume"
+						element={<ResumePage />}
+					/>
+					<Route
+						path="/login"
+						element={<LoginPage />}
+					/>
+					<Route
+						path="/company/:id"
+						element={<CompanyDetail />}
+					/>
 				</Routes>
 			</MenuContext.Provider>
 		</LoginContext.Provider>
