@@ -27,7 +27,6 @@ const RecommandCompany: React.FC = () => {
 				const response = await axios.get("/companies/", {
 					params: params,
 				});
-				console.log(response.data);
 				setCompanies(response.data.companies);
 			} catch (err) {
 				console.log(err);
@@ -67,7 +66,10 @@ const RecommandCompany: React.FC = () => {
 			>
 				{companies.map((company) => {
 					return (
-						<Col span={6}>
+						<Col
+							span={6}
+							key={company.id}
+						>
 							<Card
 								hoverable
 								cover={
