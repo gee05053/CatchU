@@ -30,6 +30,42 @@ const RecommandCompany: React.FC = () => {
 				const response = await axios.get("/companies/", {
 					params: params,
 				});
+				if (params.sorting === "New") {
+					setCompanies(response.data.companies.reverse());
+				} else if (params.sorting === "rate") {
+					response.data.companies.sort(function (
+						a: companyType,
+						b: companyType,
+					) {
+						return b.rating - a.rating;
+					});
+					setCompanies(response.data.companies);
+				} else {
+					response.data.companies.sort(function (
+						a: companyType,
+						b: companyType,
+					) {
+						const endDateA = a.end_date.split("-");
+						const endDateB = b.end_date.split("-");
+						if (Number(endDateA[0]) > Number(endDateB[0])) {
+							return 1;
+						} else if (Number(endDateA[0]) === Number(endDateB[0])) {
+							if (Number(endDateA[1]) > Number(endDateB[1])) {
+								return 1;
+							} else if (Number(endDateA[1]) === Number(endDateB[1])) {
+								if (Number(endDateA[2]) > Number(endDateB[2])) {
+									return 1;
+								} else {
+									return -1;
+								}
+							} else {
+								return -1;
+							}
+						} else {
+							return -1;
+						}
+					});
+				}
 				setCompanies(response.data.companies);
 			} catch (err) {
 				console.log(err);
