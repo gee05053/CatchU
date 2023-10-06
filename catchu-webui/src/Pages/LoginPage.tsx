@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Input, Button, Card, Divider, Form, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { LoginContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import SignUpModal from "../Components/SignUpModal";
 
 const LoginPage: React.FC = () => {
 	const { setIsLogin } = useContext(LoginContext);
+	const [isSiginUpOpen, setSignUpOpen] = useState<boolean>(false);
 	const [messageApi, contextHolder] = message.useMessage();
 	const navigate = useNavigate();
 
@@ -87,20 +89,40 @@ const LoginPage: React.FC = () => {
 						</Button>
 					</Form.Item>
 				</Card>
-				<div style={{ color: "#8d8d8d" }}>
-					아이디 찾기
+				<div>
+					<Button
+						type="link"
+						style={{ padding: 0, color: "#8d8d8d" }}
+					>
+						아이디 찾기
+					</Button>
 					<Divider
 						type="vertical"
 						style={{ backgroundColor: "#dadada" }}
 					/>
-					비밀번호 찾기
+					<Button
+						type="link"
+						style={{ padding: 0, color: "#8d8d8d" }}
+					>
+						비밀번호 찾기
+					</Button>
 					<Divider
 						type="vertical"
 						style={{ backgroundColor: "#dadada" }}
 					/>
-					회원가입
+					<Button
+						type="link"
+						style={{ padding: 0, color: "#8d8d8d" }}
+						onClick={() => setSignUpOpen(true)}
+					>
+						회원가입
+					</Button>
 				</div>
 			</Form>
+			<SignUpModal
+				isSignUpOpen={isSiginUpOpen}
+				setSignUpOpen={setSignUpOpen}
+			/>
 		</>
 	);
 };
