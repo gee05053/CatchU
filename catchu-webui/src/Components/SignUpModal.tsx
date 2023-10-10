@@ -1,5 +1,6 @@
 import React from "react";
-import { Modal, Input, Form, Select } from "antd";
+import { Modal, Input, Form, Select, message } from "antd";
+import axios from "axios";
 
 type SignUpProps = {
 	isSignUpOpen: boolean;
@@ -10,6 +11,9 @@ const SignUpModal: React.FC<SignUpProps> = ({
 	isSignUpOpen,
 	setSignUpOpen,
 }) => {
+	const [form] = Form.useForm();
+	const [messageApi, contextHolder] = message.useMessage();
+
 	const formItemLayout = {
 		labelCol: {
 			xs: { span: 24 },
@@ -21,40 +25,101 @@ const SignUpModal: React.FC<SignUpProps> = ({
 		},
 	};
 
+	const onSubmit = async () => {
+		const inputValue = form.getFieldsValue();
+		let body = {
+			name: inputValue.name,
+			id: inputValue.id,
+			password: inputValue.password,
+			email: inputValue.email,
+			position: inputValue.position,
+		};
+		const result = await axios.post("/user/signup", body);
+		if (result.data.success) {
+			form.setFieldsValue({
+				name: "",
+				id: "",
+				password: "",
+				email: "",
+				position: "",
+			});
+			setSignUpOpen(false);
+			messageApi.open({
+				type: "success",
+				content: "회원가입 성공",
+			});
+		} else {
+			messageApi.open({
+				type: "error",
+				content: "알수없는 오류 발생",
+			});
+		}
+	};
 	return (
-		<Modal
-			title="회원가입"
-			open={isSignUpOpen}
-			centered
-			onCancel={() => setSignUpOpen(false)}
-		>
-			<Form
-				{...formItemLayout}
-				layout="horizontal"
+		<>
+			{contextHolder}
+			<Modal
+				title="회원가입"
+				open={isSignUpOpen}
+				centered
+				onCancel={() => setSignUpOpen(false)}
+				onOk={onSubmit}
 			>
-				<Form.Item label="이름">
-					<Input />
-				</Form.Item>
-				<Form.Item label="ID">
-					<Input />
-				</Form.Item>
-				<Form.Item label="Password">
-					<Input />
-				</Form.Item>
-				<Form.Item label="E-mail">
-					<Input />
-				</Form.Item>
-				<Form.Item label="Position">
-					<Select
-						defaultValue="user"
-						options={[
-							{ value: "company", label: "회사" },
-							{ value: "user", label: "구직자" },
+				<Form
+					{...formItemLayout}
+					form={form}
+					layout="horizontal"
+				>
+					<Form.Item
+						name="name"
+						label="이름"
+						required={true}
+					>
+						<Input />
+					</Form.Item>
+					<Form.Item
+						name="id"
+						label="ID"
+						required={true}
+					>
+						<Input />
+					</Form.Item>
+					<Form.Item
+						name="password"
+						label="Password"
+						rules={[
+							{
+								required: true,
+								pattern: /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[_\W]).{8,}$/,
+								message:
+									"비밀번호는 특수문자를 포함한 8자리 이상이어야 합니다.",
+							},
 						]}
-					/>
-				</Form.Item>
-			</Form>
-		</Modal>
+					>
+						<Input type="password" />
+					</Form.Item>
+					<Form.Item
+						name="email"
+						label="E-mail"
+						required={true}
+					>
+						<Input />
+					</Form.Item>
+					<Form.Item
+						name="position"
+						label="Position"
+						required={true}
+					>
+						<Select
+							options={[
+								{ value: "company", label: "회사" },
+								{ value: "user", label: "구직자" },
+							]}
+						/>
+					</Form.Item>
+				</Form>
+			</Modal>
+		</>
 	);
 };
 
