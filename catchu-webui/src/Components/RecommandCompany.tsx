@@ -77,7 +77,7 @@ const RecommandCompany: React.FC = () => {
 		<Content
 			style={{
 				margin: "0 auto",
-				marginTop: "40px",
+				marginTop: "100px",
 			}}
 		>
 			<div
@@ -106,7 +106,10 @@ const RecommandCompany: React.FC = () => {
 				{companies.map((company) => {
 					return (
 						<Col
-							span={6}
+							xs={12}
+							sm={12}
+							md={12}
+							lg={6}
 							key={company.id}
 						>
 							<Link

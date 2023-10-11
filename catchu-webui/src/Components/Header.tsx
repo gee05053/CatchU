@@ -30,6 +30,8 @@ const Header: React.FC = () => {
 				borderBottomStyle: "solid",
 				borderBottomColor: "#ebebeb",
 				paddingInline: "12%",
+				position: "fixed",
+				width: "100%",
 			}}
 		>
 			<Row

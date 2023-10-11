@@ -13,9 +13,7 @@ const HomePage: React.FC = () => {
 
 	return (
 		<Layout style={{ backgroundColor: "#ffffff" }}>
-			<Layout style={{ backgroundColor: "#ffffff" }}>
-				{isSmallScreen && isMenuOpen ? <Sider /> : <RecommandCompany />}
-			</Layout>
+			{isSmallScreen && isMenuOpen ? <Sider /> : <RecommandCompany />}
 		</Layout>
 	);
 };
