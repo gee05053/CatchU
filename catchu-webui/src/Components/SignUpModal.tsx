@@ -27,32 +27,45 @@ const SignUpModal: React.FC<SignUpProps> = ({
 
 	const onSubmit = async () => {
 		const inputValue = form.getFieldsValue();
-		let body = {
-			name: inputValue.name,
-			id: inputValue.id,
-			password: inputValue.password,
-			email: inputValue.email,
-			position: inputValue.position,
-		};
-		const result = await axios.post("/user/signup", body);
-		if (result.data.success) {
-			form.setFieldsValue({
-				name: "",
-				id: "",
-				password: "",
-				email: "",
-				position: "",
-			});
-			setSignUpOpen(false);
-			messageApi.open({
-				type: "success",
-				content: "회원가입 성공",
-			});
-		} else {
+		if (
+			inputValue.name === undefined ||
+			inputValue.id === undefined ||
+			inputValue.password === undefined ||
+			inputValue.email === undefined ||
+			inputValue.position === undefined
+		) {
 			messageApi.open({
 				type: "error",
-				content: "알수없는 오류 발생",
+				content: "필수 정보를 입력하세요",
 			});
+		} else {
+			let body = {
+				name: inputValue.name,
+				id: inputValue.id,
+				password: inputValue.password,
+				email: inputValue.email,
+				position: inputValue.position,
+			};
+			const result = await axios.post("/user/signup", body);
+			if (result.data.success) {
+				form.setFieldsValue({
+					name: undefined,
+					id: undefined,
+					password: undefined,
+					email: undefined,
+					position: undefined,
+				});
+				setSignUpOpen(false);
+				messageApi.open({
+					type: "success",
+					content: "회원가입 성공",
+				});
+			} else {
+				messageApi.open({
+					type: "error",
+					content: "알수없는 오류 발생",
+				});
+			}
 		}
 	};
 	return (
