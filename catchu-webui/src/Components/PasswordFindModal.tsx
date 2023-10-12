@@ -14,7 +14,9 @@ const PasswordFindModal: React.FC<PasswordFindModalProps> = ({
 	const [messageApi, contextHolder] = message.useMessage();
 	const [currentStep, setCurrentStep] = useState<number>(0);
 	const [checkNumber, setCheckNumber] = useState<number>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const onClickFirstStep = async () => {
+		setIsLoading(true);
 		const inputValue = form.getFieldsValue();
 		if (
 			inputValue.id === undefined ||
@@ -27,21 +29,33 @@ const PasswordFindModal: React.FC<PasswordFindModalProps> = ({
 				content: "가입한 아이디와 이메일을 입력하세요.",
 			});
 		} else {
-			const result = await axios.post("/account/findPassword", inputValue);
-			if (result.data.checkNumber === undefined) {
+			try {
+				const result = await axios.post(
+					"/account/findPassword",
+					inputValue,
+				);
+				if (result.data.checkNumber === undefined) {
+					messageApi.open({
+						type: "error",
+						content: "가입되어 있는 정보가 없습니다.",
+					});
+				} else {
+					setIsLoading(false);
+					setCheckNumber(result.data.checkNumber);
+					setCurrentStep(currentStep + 1);
+				}
+			} catch {
 				messageApi.open({
 					type: "error",
-					content: "가입되어 있는 정보가 없습니다.",
+					content: "알수 없는 오류가 발생했습니다.",
 				});
-			} else {
-				setCheckNumber(result.data.checkNumber);
-				setCurrentStep(currentStep + 1);
+				setIsLoading(false);
 			}
 		}
 	};
 	const onClickSecondStep = () => {
 		const typeCheckNumber = form.getFieldValue("checkNumber");
-		if (checkNumber == typeCheckNumber) {
+		if (checkNumber === Number(typeCheckNumber)) {
 			setCurrentStep(currentStep + 1);
 		} else {
 			messageApi.open({
@@ -63,16 +77,23 @@ const PasswordFindModal: React.FC<PasswordFindModalProps> = ({
 				content: "비밀번호를 입력하세요",
 			});
 		} else {
-			const result = await axios.post(
-				"/account/changePassword",
-				inputValue,
-			);
-			if (result.data.success) {
-				setCurrentStep(currentStep + 1);
-			} else {
+			try {
+				const result = await axios.post(
+					"/account/changePassword",
+					inputValue,
+				);
+				if (result.data.success) {
+					setCurrentStep(currentStep + 1);
+				} else {
+					messageApi.open({
+						type: "error",
+						content: "비밀번호 변경에 실패했습니다.",
+					});
+				}
+			} catch {
 				messageApi.open({
 					type: "error",
-					content: "비밀번호 변경에 실패했습니다.",
+					content: "비밀번호 변경 중 알 수 없는 오류로 실패했습니다.",
 				});
 			}
 		}
@@ -157,6 +178,7 @@ const PasswordFindModal: React.FC<PasswordFindModalProps> = ({
 			footer={[
 				currentStep < 3 ? (
 					<Button
+						loading={isLoading}
 						onClick={() => {
 							if (currentStep === 0) {
 								onClickFirstStep();
