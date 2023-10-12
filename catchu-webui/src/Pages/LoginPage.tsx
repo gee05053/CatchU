@@ -15,11 +15,13 @@ import { LoginContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import SignUpModal from "../Components/SignUpModal";
 import IdFindModal from "../Components/IdFindModal";
-
+import PasswordFindModal from "../Components/PasswordFindModal";
 const LoginPage: React.FC = () => {
 	const { setIsLogin } = useContext(LoginContext);
 	const [isSiginUpOpen, setSignUpOpen] = useState<boolean>(false);
 	const [isIdFindModalOpen, setIdFindModalOpen] = useState<boolean>(false);
+	const [isPasswordFindModalOpen, setPasswordFindModalOpen] =
+		useState<boolean>(false);
 	const [messageApi, contextHolder] = message.useMessage();
 	const navigate = useNavigate();
 
@@ -113,6 +115,7 @@ const LoginPage: React.FC = () => {
 						<Button
 							type="link"
 							style={{ padding: 0, color: "#8d8d8d" }}
+							onClick={() => setPasswordFindModalOpen(true)}
 						>
 							비밀번호 찾기
 						</Button>
@@ -130,13 +133,17 @@ const LoginPage: React.FC = () => {
 					</Col>
 				</Form>
 			</Col>
-			<SignUpModal
-				isSignUpOpen={isSiginUpOpen}
-				setSignUpOpen={setSignUpOpen}
-			/>
 			<IdFindModal
 				isIdFindModalOpen={isIdFindModalOpen}
 				setIdFindModalOpen={setIdFindModalOpen}
+			/>
+			<PasswordFindModal
+				isPasswordFindModalOpen={isPasswordFindModalOpen}
+				setPasswordFindModalOpen={setPasswordFindModalOpen}
+			/>
+			<SignUpModal
+				isSignUpOpen={isSiginUpOpen}
+				setSignUpOpen={setSignUpOpen}
 			/>
 		</Row>
 	);

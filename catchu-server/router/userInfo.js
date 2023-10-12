@@ -44,7 +44,7 @@ router.post("/signup", (req, res) => {
 		json.push(newUser);
 		fs.writeFile(jsonPath, JSON.stringify(json), (err) => {
 			if (err) {
-				res.send({ success: fail });
+				res.send({ success: false });
 			}
 			res.send({ success: true });
 		});
