@@ -4,6 +4,21 @@ const userData = require("../data/user.json");
 const path = require("path");
 const fs = require("fs");
 
+router.get("/findId", (req, res) => {
+	const searchUser = userData.filter(
+		(user) => req.query.email === user.email,
+	);
+	if (searchUser.length === 0) {
+		res.send({
+			findId: undefined,
+		});
+	} else {
+		res.send({
+			findId: searchUser[0].user_id,
+		});
+	}
+});
+
 router.post("/login", (req, res) => {
 	const id = req.body.id;
 	const password = req.body.password;

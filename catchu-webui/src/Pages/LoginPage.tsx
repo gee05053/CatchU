@@ -14,10 +14,12 @@ import axios from "axios";
 import { LoginContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import SignUpModal from "../Components/SignUpModal";
+import IdFindModal from "../Components/IdFindModal";
 
 const LoginPage: React.FC = () => {
 	const { setIsLogin } = useContext(LoginContext);
 	const [isSiginUpOpen, setSignUpOpen] = useState<boolean>(false);
+	const [isIdFindModalOpen, setIdFindModalOpen] = useState<boolean>(false);
 	const [messageApi, contextHolder] = message.useMessage();
 	const navigate = useNavigate();
 
@@ -100,6 +102,7 @@ const LoginPage: React.FC = () => {
 						<Button
 							type="link"
 							style={{ padding: 0, color: "#8d8d8d" }}
+							onClick={() => setIdFindModalOpen(true)}
 						>
 							아이디 찾기
 						</Button>
@@ -126,11 +129,15 @@ const LoginPage: React.FC = () => {
 						</Button>
 					</Col>
 				</Form>
-				<SignUpModal
-					isSignUpOpen={isSiginUpOpen}
-					setSignUpOpen={setSignUpOpen}
-				/>
 			</Col>
+			<SignUpModal
+				isSignUpOpen={isSiginUpOpen}
+				setSignUpOpen={setSignUpOpen}
+			/>
+			<IdFindModal
+				isIdFindModalOpen={isIdFindModalOpen}
+				setIdFindModalOpen={setIdFindModalOpen}
+			/>
 		</Row>
 	);
 };
