@@ -4,5 +4,5 @@
 #JSON
 /data
 
-#account router
-/router/account.js
+#.env
+.env

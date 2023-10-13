@@ -4,6 +4,7 @@ const userData = require("../data/user.json");
 const nodeMailer = require("nodemailer");
 const path = require("path");
 const fs = require("fs");
+require("dotenv").config();
 
 const generateRandomNumber = () => {
 	let strNumber = "";
@@ -20,8 +21,8 @@ const transporter = nodeMailer.createTransport({
 	secure: false,
 	requireTLS: true,
 	auth: {
-		user: //Input your gmail,
-		pass: //Input your gmail password or app password,
+		user: process.env.USER_GMAIL,
+		pass: process.env.GMAIL_APP_PASSWORD,
 	},
 });
 
@@ -37,7 +38,7 @@ router.post("/findPassword", async (req, res) => {
 	} else {
 		const checkNumber = generateRandomNumber();
 		await transporter.sendMail({
-			from: //Input your gmail,
+			from: process.env.USER_GMAIL,
 			to: req.body.email,
 			subject: "CatchU 비밀번호 찾기 인증번호입니다.",
 			text: `인증번호는 ${checkNumber} 입니다.`,
