@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Input, Form, Select, message } from "antd";
+import { Modal, Input, Form, Select, message, Button } from "antd";
 import axios from "axios";
 
 type SignUpProps = {
@@ -27,25 +27,14 @@ const SignUpModal: React.FC<SignUpProps> = ({
 
 	const onSubmit = async () => {
 		const inputValue = form.getFieldsValue();
-		if (
-			inputValue.name === undefined ||
-			inputValue.id === undefined ||
-			inputValue.password === undefined ||
-			inputValue.email === undefined ||
-			inputValue.position === undefined
-		) {
-			messageApi.open({
-				type: "error",
-				content: "필수 정보를 입력하세요",
-			});
-		} else {
-			let body = {
-				name: inputValue.name,
-				id: inputValue.id,
-				password: inputValue.password,
-				email: inputValue.email,
-				position: inputValue.position,
-			};
+		let body = {
+			name: inputValue.name,
+			id: inputValue.id,
+			password: inputValue.password,
+			email: inputValue.email,
+			position: inputValue.position,
+		};
+		try {
 			const result = await axios.post("/user/signup", body);
 			if (result.data.success) {
 				form.setFieldsValue({
@@ -66,6 +55,11 @@ const SignUpModal: React.FC<SignUpProps> = ({
 					content: "알수없는 오류 발생",
 				});
 			}
+		} catch {
+			messageApi.open({
+				type: "error",
+				content: "알수없는 오류 발생으로 회원가입에 실패했습니다.",
+			});
 		}
 	};
 	return (
@@ -76,24 +70,42 @@ const SignUpModal: React.FC<SignUpProps> = ({
 				open={isSignUpOpen}
 				centered
 				onCancel={() => setSignUpOpen(false)}
-				onOk={onSubmit}
+				footer={[
+					<Button
+						htmlType="submit"
+						onClick={form.submit}
+					>
+						가입하기
+					</Button>,
+				]}
 			>
 				<Form
 					{...formItemLayout}
 					form={form}
 					layout="horizontal"
+					onFinish={onSubmit}
 				>
 					<Form.Item
 						name="name"
 						label="이름"
-						required={true}
+						rules={[
+							{
+								required: true,
+								message: "이름을 입력하세요.",
+							},
+						]}
 					>
 						<Input />
 					</Form.Item>
 					<Form.Item
 						name="id"
 						label="ID"
-						required={true}
+						rules={[
+							{
+								required: true,
+								message: "아이디를 입력하세요.",
+							},
+						]}
 					>
 						<Input />
 					</Form.Item>
@@ -114,14 +126,24 @@ const SignUpModal: React.FC<SignUpProps> = ({
 					<Form.Item
 						name="email"
 						label="E-mail"
-						required={true}
+						rules={[
+							{
+								required: true,
+								message: "이메일을 입력하세요.",
+							},
+						]}
 					>
 						<Input />
 					</Form.Item>
 					<Form.Item
 						name="position"
 						label="Position"
-						required={true}
+						rules={[
+							{
+								required: true,
+								message: "포지션을 골라주세요.",
+							},
+						]}
 					>
 						<Select
 							options={[

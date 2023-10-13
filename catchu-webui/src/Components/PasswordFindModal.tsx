@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Steps, message, Input, Form, Button } from "antd";
+import { Modal, message, Input, Form, Button } from "antd";
 import axios from "axios";
 
 type PasswordFindModalProps = {
@@ -203,7 +203,6 @@ const PasswordFindModal: React.FC<PasswordFindModalProps> = ({
 			]}
 		>
 			{contextHolder}
-			<Steps current={currentStep} />
 			<Form
 				form={form}
 				layout="vertical"
