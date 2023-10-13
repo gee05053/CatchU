@@ -16,8 +16,9 @@ import { useNavigate } from "react-router-dom";
 import SignUpModal from "../Components/SignUpModal";
 import IdFindModal from "../Components/IdFindModal";
 import PasswordFindModal from "../Components/PasswordFindModal";
+
 const LoginPage: React.FC = () => {
-	const { setIsLogin } = useContext(LoginContext);
+	const { setIsLogin, setUserData } = useContext(LoginContext);
 	const [isSiginUpOpen, setSignUpOpen] = useState<boolean>(false);
 	const [isIdFindModalOpen, setIdFindModalOpen] = useState<boolean>(false);
 	const [isPasswordFindModalOpen, setPasswordFindModalOpen] =
@@ -36,15 +37,27 @@ const LoginPage: React.FC = () => {
 				id: value.id,
 				password: value.password,
 			};
-			const result = await axios.post("/user/login", body);
-			if (result.data.user.length === 0) {
+			try {
+				const result = await axios.post("/user/login", body);
+				if (result.data.user.length === 0) {
+					messageApi.open({
+						type: "error",
+						content: "아이디와 비밀번호를 확인해주세요",
+					});
+				} else {
+					window.sessionStorage.setItem(
+						"userData",
+						JSON.stringify(result.data.user[0]),
+					);
+					setUserData(result.data.user[0]);
+					setIsLogin(true);
+					navigate("/");
+				}
+			} catch {
 				messageApi.open({
 					type: "error",
-					content: "아이디와 비밀번호를 확인해주세요",
+					content: "서버에 에러가 발생하여 로그인을 할 수 없습니다.",
 				});
-			} else {
-				setIsLogin(true);
-				navigate("/");
 			}
 		}
 	};

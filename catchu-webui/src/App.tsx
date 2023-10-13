@@ -1,4 +1,4 @@
-import React, { useState, createContext, useMemo } from "react";
+import React, { useState, createContext, useMemo, useEffect } from "react";
 import Header from "./Components/Header";
 import HomePage from "./Pages/HomePage";
 import RecruitPage from "./Pages/RecruitPage";
@@ -8,9 +8,19 @@ import LoginPage from "./Pages/LoginPage";
 import CompanyDetail from "./Pages/CompanyDetailPage";
 import { Route, Routes } from "react-router-dom";
 
+type userDataType = {
+	id: number;
+	user_id: string;
+	password: string;
+	email: string;
+	user_name: string;
+	position: string;
+};
+
 export const LoginContext = createContext({
 	setIsLogin: (value: boolean) => {},
 	isLogin: false,
+	setUserData: (value: userDataType | undefined) => {},
 });
 
 export const MenuContext = createContext({
@@ -19,11 +29,21 @@ export const MenuContext = createContext({
 });
 
 const App: React.FC = () => {
-	const [isMenuOpen, setMenuOpen] = useState(false);
-	const [isLogin, setIsLogin] = useState(false);
+	const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+	const [isLogin, setIsLogin] = useState<boolean>(false);
+	const [userData, setUserData] = useState<userDataType | undefined>();
+	useEffect(() => {
+		const sessionUserData: string | null =
+			window.sessionStorage.getItem("userData");
+		if (sessionUserData) {
+			const jsonUserData: userDataType = JSON.parse(sessionUserData);
+			setIsLogin(true);
+			setUserData(jsonUserData);
+		}
+	}, []);
 	const loginValue = useMemo(
-		() => ({ setIsLogin, isLogin }),
-		[setIsLogin, isLogin],
+		() => ({ setIsLogin, isLogin, setUserData }),
+		[setIsLogin, isLogin, setUserData],
 	);
 	const MenuValue = useMemo(
 		() => ({ setMenuOpen, isMenuOpen }),
