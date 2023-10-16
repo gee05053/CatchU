@@ -28,6 +28,21 @@ const transporter = nodeMailer.createTransport({
 
 let searchUser;
 
+router.get("/findId", (req, res) => {
+	const searchUser = userData.filter(
+		(user) => req.query.email === user.email,
+	);
+	if (searchUser.length === 0) {
+		res.send({
+			findId: undefined,
+		});
+	} else {
+		res.send({
+			findId: searchUser[0].user_id,
+		});
+	}
+});
+
 router.post("/findPassword", async (req, res) => {
 	searchUser = userData.filter(
 		(user) =>

@@ -18,7 +18,7 @@ const IdFindModal: React.FC<IdFindModalProps> = ({
 	const onClickNext = async () => {
 		const inputValue = form.getFieldsValue();
 		try {
-			const result = await axios.get("/user/findId", {
+			const result = await axios.get("/account/findId", {
 				params: {
 					email: inputValue.email,
 				},
