@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Layout, Row, Col, Space, Button } from "antd";
-import {
-	BellOutlined,
-	UserOutlined,
-	MenuOutlined,
-} from "@ant-design/icons";
+import { BellOutlined, MenuOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { LoginContext, MenuContext } from "../App";
+import UserDropdown from "./UserDropdown";
 
 const Header: React.FC = () => {
 	const { Header } = Layout;
@@ -29,7 +26,6 @@ const Header: React.FC = () => {
 				borderBottomWidth: 1,
 				borderBottomStyle: "solid",
 				borderBottomColor: "#ebebeb",
-				paddingInline: "12%",
 				position: "fixed",
 				width: "100%",
 			}}
@@ -43,7 +39,7 @@ const Header: React.FC = () => {
 						to="/"
 						style={{ color: "#1f1f1f" }}
 					>
-						<b style={{ fontSize: "22px" }}>CatchU</b>
+						<b style={{ fontSize: "25px" }}>CatchU</b>
 					</Link>
 				</Col>
 				{isFullScreen ? (
@@ -92,14 +88,18 @@ const Header: React.FC = () => {
 							</Col>
 						</Col>
 						{isLogin ? (
-							<Col>
-								<Space
-									size="large"
-									style={{ fontSize: "20px" }}
+							<Col span={2}>
+								<div
+									style={{
+										display: "flex",
+										justifyContent: "space-around",
+										alignItems: "center",
+										fontSize: "25px",
+									}}
 								>
 									<BellOutlined />
-									<UserOutlined />
-								</Space>
+									<UserDropdown />
+								</div>
 							</Col>
 						) : (
 							<Col>
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
 					<Col>
 						<Space
 							size="large"
-							style={{ fontSize: "20px" }}
+							style={{ fontSize: "25px" }}
 						>
 							<BellOutlined />
 							<MenuOutlined onClick={onClickMenu} />
