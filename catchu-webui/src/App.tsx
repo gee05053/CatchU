@@ -20,7 +20,8 @@ type userDataType = {
 export const LoginContext = createContext({
 	setIsLogin: (value: boolean) => {},
 	isLogin: false,
-	setUserData: (value: userDataType | undefined) => {},
+	setUserData: (value: userDataType) => {},
+	userData: JSON.parse(`{}`),
 });
 
 export const MenuContext = createContext({
@@ -31,7 +32,7 @@ export const MenuContext = createContext({
 const App: React.FC = () => {
 	const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 	const [isLogin, setIsLogin] = useState<boolean>(false);
-	const [userData, setUserData] = useState<userDataType | undefined>();
+	const [userData, setUserData] = useState<userDataType>();
 	useEffect(() => {
 		const sessionUserData: string | null =
 			window.sessionStorage.getItem("userData");
@@ -42,8 +43,8 @@ const App: React.FC = () => {
 		}
 	}, []);
 	const loginValue = useMemo(
-		() => ({ setIsLogin, isLogin, setUserData }),
-		[setIsLogin, isLogin, setUserData],
+		() => ({ setIsLogin, isLogin, setUserData, userData }),
+		[setIsLogin, isLogin, setUserData, userData],
 	);
 	const MenuValue = useMemo(
 		() => ({ setMenuOpen, isMenuOpen }),
