@@ -47,7 +47,7 @@ const UserDropdown: React.FC = () => {
 			icon: <LogoutOutlined style={{ fontSize: "17px" }} />,
 			onClick: async () => {
 				try {
-					const result = await axios.post("/user/logout");
+					const result = await axios.post("/account/logout");
 					if (result.data.success) {
 						window.sessionStorage.removeItem("userData");
 						setIsLogin(false);

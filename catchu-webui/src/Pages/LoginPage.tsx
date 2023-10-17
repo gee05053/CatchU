@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
 				password: value.password,
 			};
 			try {
-				const result = await axios.post("/user/login", body);
+				const result = await axios.post("/account/login", body);
 				if (result.data.user.length === 0) {
 					messageApi.open({
 						type: "error",

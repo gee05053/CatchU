@@ -35,7 +35,7 @@ const SignUpModal: React.FC<SignUpProps> = ({
 			position: inputValue.position,
 		};
 		try {
-			const result = await axios.post("/user/signup", body);
+			const result = await axios.post("/account/signup", body);
 			if (result.data.success) {
 				form.setFieldsValue({
 					name: undefined,

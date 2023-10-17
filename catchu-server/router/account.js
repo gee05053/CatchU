@@ -62,6 +62,42 @@ router.post("/findPassword", async (req, res) => {
 	}
 });
 
+router.post("/signup", (req, res) => {
+	const jsonPath = path.join(__dirname, "..", "data", "user.json");
+	fs.readFile(jsonPath, function (err, data) {
+		let json = JSON.parse(data);
+		const newUser = {
+			id: json[json.length - 1].id + 1,
+			user_id: req.body.id,
+			password: req.body.password,
+			email: req.body.email,
+			user_name: req.body.name,
+			position: req.body.position,
+		};
+		json.push(newUser);
+		fs.writeFile(jsonPath, JSON.stringify(json), (err) => {
+			if (err) {
+				res.send({ success: false });
+			}
+			res.send({ success: true });
+		});
+	});
+});
+
+router.post("/login", (req, res) => {
+	const id = req.body.id;
+	const password = req.body.password;
+	console.log(userData);
+	const user = userData.filter(
+		(user) => user.user_id == id && user.password == password,
+	);
+	res.send({ user });
+});
+
+router.post("/logout", (req, res) => {
+	res.send({ success: true });
+});
+
 router.post("/changePassword", (req, res) => {
 	const jsonPath = path.join(__dirname, "..", "data", "user.json");
 	fs.readFile(jsonPath, function (err, data) {
