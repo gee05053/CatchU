@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Dropdown, MenuProps, message } from "antd";
 import {
 	UserOutlined,
@@ -7,11 +7,13 @@ import {
 	FileTextOutlined,
 } from "@ant-design/icons";
 import { LoginContext } from "../App";
+import UserProfileModal from "./UserProfileModal";
 import axios from "axios";
 
 const UserDropdown: React.FC = () => {
 	const { setIsLogin, userData } = useContext(LoginContext);
 	const [messageApi, contextHolder] = message.useMessage();
+	const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 	const items: MenuProps["items"] = [
 		{
 			key: "0",
@@ -35,6 +37,9 @@ const UserDropdown: React.FC = () => {
 			key: "2",
 			label: "정보 변경",
 			icon: <FileTextOutlined style={{ fontSize: "17px" }} />,
+			onClick: () => {
+				setIsOpenModal(true);
+			},
 		},
 		{
 			key: "3",
@@ -71,6 +76,10 @@ const UserDropdown: React.FC = () => {
 			>
 				<UserOutlined style={{ fontSize: "25px" }} />
 			</Dropdown>
+			<UserProfileModal
+				isOpenModal={isOpenModal}
+				setIsOpenModal={setIsOpenModal}
+			/>
 		</>
 	);
 };

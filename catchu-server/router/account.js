@@ -85,4 +85,27 @@ router.post("/changePassword", (req, res) => {
 	});
 });
 
+router.put("/changeProfile", (req, res) => {
+	const jsonPath = path.join(__dirname, "..", "data", "user.json");
+	fs.readFile(jsonPath, function (err, data) {
+		let json = JSON.parse(data);
+		const newUser = {
+			id: req.body.id,
+			user_id: req.body.userId,
+			password: req.body.newPassword,
+			email: req.body.email,
+			user_name: req.body.userName,
+			position: req.body.position,
+		};
+		const index = json.findIndex((user) => user.id === req.body.id);
+		json[index] = newUser;
+		fs.writeFile(jsonPath, JSON.stringify(json), (err) => {
+			if (err) {
+				res.send({ success: false });
+			}
+			res.send({ success: true, newUserData: newUser });
+		});
+	});
+});
+
 module.exports = router;
