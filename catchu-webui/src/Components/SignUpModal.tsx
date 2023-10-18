@@ -147,8 +147,8 @@ const SignUpModal: React.FC<SignUpProps> = ({
 					>
 						<Select
 							options={[
-								{ value: "company", label: "회사" },
-								{ value: "user", label: "구직자" },
+								{ value: "Company", label: "회사" },
+								{ value: "User", label: "구직자" },
 							]}
 						/>
 					</Form.Item>

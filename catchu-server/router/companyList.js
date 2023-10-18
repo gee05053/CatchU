@@ -7,4 +7,8 @@ router.get("/", (req, res) => {
 	res.send({ companies: companies });
 });
 
+router.post("/recruit", (req, res) => {
+	res.send({ success: true });
+});
+
 module.exports = router;

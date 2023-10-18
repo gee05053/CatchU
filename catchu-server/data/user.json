@@ -5,7 +5,7 @@
 		"password": "!company123",
 		"email": "test_company@gmail.com",
 		"user_name": "test_company",
-		"position": "company"
+		"position": "Company"
 	},
 	{
 		"id": 2,
@@ -13,6 +13,6 @@
 		"password": "!user123",
 		"email": "test_user@gmail.com",
 		"user_name": "test_user",
-		"position": "user"
+		"position": "User"
 	}
 ]

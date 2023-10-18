@@ -54,36 +54,25 @@ const Header: React.FC = () => {
 							}}
 						>
 							<Col
-								span={8}
+								span={12}
+								style={{ fontSize: "18px" }}
+							>
+								<Link
+									to=""
+									style={{ color: "#1f1f1f" }}
+								>
+									채용 공고
+								</Link>
+							</Col>
+							<Col
+								span={12}
 								style={{ fontSize: "18px" }}
 							>
 								<Link
 									to="/recruit"
 									style={{ color: "#1f1f1f" }}
 								>
-									채용
-								</Link>
-							</Col>
-							<Col
-								span={8}
-								style={{ fontSize: "18px" }}
-							>
-								<Link
-									to="/resume"
-									style={{ color: "#1f1f1f" }}
-								>
-									이력서
-								</Link>
-							</Col>
-							<Col
-								span={8}
-								style={{ fontSize: "18px" }}
-							>
-								<Link
-									to="/Career"
-									style={{ color: "#1f1f1f" }}
-								>
-									커리어
+									채용 공고 올리기
 								</Link>
 							</Col>
 						</Col>

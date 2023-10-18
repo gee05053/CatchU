@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Dropdown, MenuProps, message } from "antd";
+import { Dropdown, MenuProps, message, Divider } from "antd";
 import {
 	UserOutlined,
 	LogoutOutlined,
@@ -17,7 +17,13 @@ const UserDropdown: React.FC = () => {
 	const items: MenuProps["items"] = [
 		{
 			key: "0",
-			label: userData.user_name,
+			label: (
+				<>
+					{userData.user_name}
+					<Divider type="vertical" />
+					{userData.position}
+				</>
+			),
 			icon: <UserOutlined style={{ fontSize: "17px" }} />,
 			disabled: true,
 			style: {
