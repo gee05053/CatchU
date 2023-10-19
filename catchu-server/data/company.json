@@ -6,9 +6,8 @@
 		"employment_title": "FrontEnd engineer",
 		"location": "서울",
 		"keywords": ["웹개발", "react", "프론트"],
-		"rating": 3,
-		"upload_date": "2023-1-2",
-		"end_date": "2023-5-3",
+		"upload_date": "2023-01-02",
+		"end_date": "2023-05-03",
 		"images": [
 			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
 			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
@@ -21,9 +20,8 @@
 		"employment_title": "FrontEnd engineer2",
 		"location": "서울",
 		"keywords": ["생산"],
-		"rating": 1,
-		"upload_date": "2023-1-5",
-		"end_date": "2023-4-3",
+		"upload_date": "2023-01-05",
+		"end_date": "2023-04-03",
 		"images": [
 			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
 		]
@@ -35,9 +33,8 @@
 		"employment_title": "FrontEnd engineer3",
 		"location": "서울",
 		"keywords": [],
-		"rating": 5,
-		"upload_date": "2023-2-10",
-		"end_date": "2023-2-20",
+		"upload_date": "2023-02-10",
+		"end_date": "2023-02-20",
 		"images": [
 			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
 		]
@@ -49,9 +46,8 @@
 		"employment_title": "FrontEnd engineer4",
 		"location": "서울",
 		"keywords": [],
-		"rating": 2,
-		"upload_date": "2023-5-2",
-		"end_date": "2023-6-30",
+		"upload_date": "2023-05-02",
+		"end_date": "2023-06-30",
 		"images": [
 			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
 		]

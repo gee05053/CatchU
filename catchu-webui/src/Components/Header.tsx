@@ -26,7 +26,7 @@ const Header: React.FC = () => {
 				borderBottomWidth: 1,
 				borderBottomStyle: "solid",
 				borderBottomColor: "#ebebeb",
-				position: "fixed",
+				position: "absolute",
 				width: "100%",
 			}}
 		>

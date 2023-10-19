@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, Select, Layout, Image, Rate } from "antd";
+import { Card, Row, Col, Select, Layout, Image } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -129,16 +129,7 @@ const RecommandCompany: React.FC = () => {
 								>
 									<Card.Meta
 										title={company.employment_title}
-										description={
-											<div>
-												{company.company_name}
-												<Rate
-													disabled
-													defaultValue={company.rating}
-													style={{ marginTop: "10px" }}
-												/>
-											</div>
-										}
+										description={company.company_name}
 									/>
 								</Card>
 							</Link>
