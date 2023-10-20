@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Layout, Row, Col, Space, Button } from "antd";
+import { Layout, Row, Col, Space, Button, message } from "antd";
 import { BellOutlined, MenuOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { LoginContext, MenuContext } from "../App";
@@ -9,8 +9,8 @@ import UserDropdown from "./UserDropdown";
 const Header: React.FC = () => {
 	const { Header } = Layout;
 	const { setMenuOpen, isMenuOpen } = useContext(MenuContext);
-	const { isLogin } = useContext(LoginContext);
-
+	const { isLogin, userData } = useContext(LoginContext);
+	const [messageApi, contextHolder] = message.useMessage();
 	const isFullScreen: boolean = useMediaQuery({
 		query: "(min-width: 990px)",
 	});
@@ -31,6 +31,7 @@ const Header: React.FC = () => {
 				zIndex: 1,
 			}}
 		>
+			{contextHolder}
 			<Row
 				justify="space-between"
 				align="middle"
@@ -61,6 +62,23 @@ const Header: React.FC = () => {
 								<Link
 									to="/recruit"
 									style={{ color: "#1f1f1f" }}
+									onClick={(e) => {
+										if (isLogin) {
+											if (userData.position !== "Company") {
+												messageApi.open({
+													type: "error",
+													content: "기업만 이용할 수 있는 메뉴입니다..",
+												});
+												e.preventDefault();
+											}
+										} else {
+											messageApi.open({
+												type: "error",
+												content: "로그인 후에 이용해 주시길 바랍니다.",
+											});
+											e.preventDefault();
+										}
+									}}
 								>
 									채용 공고 올리기
 								</Link>
