@@ -1,0 +1,55 @@
+[
+	{
+		"id": 1,
+		"company_name": "test company1",
+		"description": "company1",
+		"employment_title": "FrontEnd engineer",
+		"location": "서울",
+		"keywords": ["웹개발", "react", "프론트"],
+		"upload_date": "2023-01-02",
+		"end_date": "2023-05-03",
+		"images": [
+			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
+			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+		]
+	},
+	{
+		"id": 2,
+		"company_name": "test company2",
+		"description": "company2",
+		"employment_title": "FrontEnd engineer2",
+		"location": "서울",
+		"keywords": ["생산"],
+		"upload_date": "2023-01-05",
+		"end_date": "2023-04-03",
+		"images": [
+			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+		]
+	},
+	{
+		"id": 3,
+		"company_name": "test company3",
+		"description": "company3",
+		"employment_title": "FrontEnd engineer3",
+		"location": "서울",
+		"keywords": [],
+		"upload_date": "2023-02-10",
+		"end_date": "2023-02-20",
+		"images": [
+			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+		]
+	},
+	{
+		"id": 4,
+		"company_name": "test company4",
+		"description": "company4",
+		"employment_title": "FrontEnd engineer4",
+		"location": "서울",
+		"keywords": [],
+		"upload_date": "2023-05-02",
+		"end_date": "2023-06-30",
+		"images": [
+			"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+		]
+	}
+]
