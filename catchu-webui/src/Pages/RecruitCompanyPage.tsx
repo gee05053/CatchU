@@ -7,7 +7,7 @@ type paramsType = {
 	sorting: string;
 };
 
-export type companyType = {
+export type CompanyType = {
 	id: string;
 	company_name: string;
 	description: string;
@@ -20,9 +20,9 @@ export type companyType = {
 	images: Array<string>;
 };
 
-const RecommandCompany: React.FC = () => {
+const RecuitCompanyPage: React.FC = () => {
 	const [params, setParams] = useState<paramsType>({ sorting: "New" });
-	const [companies, setCompanies] = useState<Array<companyType>>([]);
+	const [companies, setCompanies] = useState<Array<CompanyType>>([]);
 	const { Content } = Layout;
 	useEffect(() => {
 		const fetchData = async () => {
@@ -34,8 +34,8 @@ const RecommandCompany: React.FC = () => {
 					setCompanies(response.data.companies.reverse());
 				} else {
 					response.data.companies.sort(function (
-						a: companyType,
-						b: companyType,
+						a: CompanyType,
+						b: CompanyType,
 					) {
 						const endDateA = a.end_date.split("-");
 						const endDateB = b.end_date.split("-");
@@ -128,4 +128,4 @@ const RecommandCompany: React.FC = () => {
 	);
 };
 
-export default RecommandCompany;
+export default RecuitCompanyPage;

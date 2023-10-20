@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, Row, Col, Divider, Tag } from "antd";
 import { useLocation } from "react-router-dom";
-import { companyType } from "../Components/RecommandCompany";
+import { CompanyType } from "./RecruitCompanyPage";
 
 const CompanyDetail: React.FC = () => {
 	const location = useLocation();
-	const company: companyType = location.state.company;
+	const company: CompanyType = location.state.company;
 	return (
 		<Row
 			justify="center"

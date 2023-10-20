@@ -55,18 +55,7 @@ const Header: React.FC = () => {
 							}}
 						>
 							<Col
-								span={12}
-								style={{ fontSize: "18px" }}
-							>
-								<Link
-									to=""
-									style={{ color: "#1f1f1f" }}
-								>
-									채용 공고
-								</Link>
-							</Col>
-							<Col
-								span={12}
+								span={24}
 								style={{ fontSize: "18px" }}
 							>
 								<Link
