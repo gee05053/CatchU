@@ -1,7 +1,8 @@
 import React, { useState, createContext, useMemo, useEffect } from "react";
+import { Layout } from "antd";
 import Header from "./Components/Header";
 import HomePage from "./Pages/HomePage";
-import RecruitPage from "./Pages/RecruitPage";
+import RecruitUploadPage from "./Pages/RecruitUploadPage";
 import LoginPage from "./Pages/LoginPage";
 import CompanyDetail from "./Pages/CompanyDetailPage";
 import { Route, Routes } from "react-router-dom";
@@ -51,25 +52,27 @@ const App: React.FC = () => {
 	return (
 		<LoginContext.Provider value={loginValue}>
 			<MenuContext.Provider value={MenuValue}>
-				<Header />
-				<Routes>
-					<Route
-						index
-						element={<HomePage />}
-					/>
-					<Route
-						path="/recruit"
-						element={<RecruitPage />}
-					/>
-					<Route
-						path="/login"
-						element={<LoginPage />}
-					/>
-					<Route
-						path="/company/:id"
-						element={<CompanyDetail />}
-					/>
-				</Routes>
+				<Layout style={{ backgroundColor: "#ffffff" }}>
+					<Header />
+					<Routes>
+						<Route
+							index
+							element={<HomePage />}
+						/>
+						<Route
+							path="/recruit"
+							element={<RecruitUploadPage />}
+						/>
+						<Route
+							path="/login"
+							element={<LoginPage />}
+						/>
+						<Route
+							path="/company/:id"
+							element={<CompanyDetail />}
+						/>
+					</Routes>
+				</Layout>
 			</MenuContext.Provider>
 		</LoginContext.Provider>
 	);

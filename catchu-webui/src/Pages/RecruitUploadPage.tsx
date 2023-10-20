@@ -17,7 +17,7 @@ import { RcFile, UploadFile } from "antd/es/upload/interface";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const RecruitPage: React.FC = () => {
+const RecruitUploadPage: React.FC = () => {
 	const [form] = Form.useForm();
 	const navigate = useNavigate();
 	const [messageApi, contextHolder] = message.useMessage();
@@ -201,4 +201,4 @@ const RecruitPage: React.FC = () => {
 	);
 };
 
-export default RecruitPage;
+export default RecruitUploadPage;

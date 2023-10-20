@@ -26,8 +26,9 @@ const Header: React.FC = () => {
 				borderBottomWidth: 1,
 				borderBottomStyle: "solid",
 				borderBottomColor: "#ebebeb",
-				position: "absolute",
+				position: "fixed",
 				width: "100%",
+				zIndex: 1,
 			}}
 		>
 			<Row
