@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { LoginContext } from "../App";
 import {
 	Form,
 	Input,
@@ -20,6 +21,7 @@ import axios from "axios";
 const RecruitUploadPage: React.FC = () => {
 	const [form] = Form.useForm();
 	const navigate = useNavigate();
+	const { userData } = useContext(LoginContext);
 	const [messageApi, contextHolder] = message.useMessage();
 	const [fileList, setFileList] = useState<UploadFile[]>([]);
 	const [previewOpen, setPreviewOpen] = useState(false);
@@ -102,14 +104,9 @@ const RecruitUploadPage: React.FC = () => {
 						<Form.Item
 							name="company_name"
 							label="회사 이름"
-							rules={[
-								{
-									required: true,
-									message: "회사 이름을 입력하세요.",
-								},
-							]}
+							initialValue={userData.user_name}
 						>
-							<Input />
+							<Input disabled />
 						</Form.Item>
 						<Form.Item
 							name="location"
