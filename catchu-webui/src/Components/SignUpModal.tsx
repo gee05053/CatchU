@@ -87,7 +87,7 @@ const SignUpModal: React.FC<SignUpProps> = ({
 				>
 					<Form.Item
 						name="name"
-						label="이름"
+						label="이름(회사명)"
 						rules={[
 							{
 								required: true,
