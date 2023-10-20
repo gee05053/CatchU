@@ -59,7 +59,7 @@ const RecruitUploadPage: React.FC = () => {
 		body.images = images;
 		body.end_date = body.end_date.format("YYYY-MM-DD");
 		try {
-			const result = await axios.post("/companies/recruit", body);
+			const result = await axios.post("/recruit/upload", body);
 			if (result.data.success) {
 				messageApi.open({
 					type: "success",
@@ -156,7 +156,7 @@ const RecruitUploadPage: React.FC = () => {
 						>
 							<Upload
 								accept="image/*"
-								action="/companies/uploadImages"
+								action="/recruit/uploadImages"
 								listType="picture-card"
 								fileList={fileList}
 								onPreview={onHandlePreview}

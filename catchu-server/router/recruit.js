@@ -2,15 +2,11 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const fs = require("fs");
-const companyData = require("../data/company.json");
+const recruitData = require("../data/recruit.json");
 
 router.get("/", (req, res) => {
-	const companies = companyData;
-	res.send({ companies: companies });
-});
-
-router.post("/uploadImages", (req, res) => {
-	res.send({ success: true });
+	const recruit = recruitData;
+	res.send({ recruit: recruit });
 });
 
 function formatDate(date) {
@@ -25,8 +21,13 @@ function formatDate(date) {
 	}
 	return [year, month, day].join("-");
 }
-router.post("/recruit", (req, res) => {
-	const jsonPath = path.join(__dirname, "..", "data", "company.json");
+
+router.post("/uploadImages", (req, res) => {
+	res.send({ success: true });
+});
+
+router.post("/upload", (req, res) => {
+	const jsonPath = path.join(__dirname, "..", "data", "recruit.json");
 	fs.readFile(jsonPath, function (err, data) {
 		let json = JSON.parse(data);
 		let newRecruit = req.body;
